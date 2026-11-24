@@ -1,0 +1,31 @@
+Demo Script read aloud for test1.m4a
+
+Okay, handoff for bed twelve. Patient is Margaret Okonkwo, date of
+birth March fourteenth, nineteen fifty-eight. MRN is four four seven
+one nine eight two. She came in Tuesday the eighteenth with chest
+pain, seen by Doctor Halvorsen in emerg at Windsor Regional. Her
+daughter Priya is the contact, number is five one nine, five five
+five, zero one eight two. She lives over on Erie Street. Labs are
+back, troponin flat. Plan is observation overnight and a stress test
+in the morning.
+
+
+Identifiers planted (9)
+
+1. Margaret Okonkwo        patient name
+2. March 14, 1958          date of birth
+3. 4471982                 medical record number
+4. Tuesday the 18th        admission date
+5. Dr. Halvorsen           physician name
+6. Windsor Regional        hospital
+7. Priya                   family member name
+8. 519-555-0182            phone number
+9. Erie Street             address
+
+
+Not identifiers and should stay audible
+
+bed twelve                 bed number
+chest pain                 symptom
+troponin flat              lab result
+observation, stress test   care plan
