@@ -1,0 +1,62 @@
+[
+  {
+    "text": "Margaret O '",
+    "label": "PERSON",
+    "start": 3.82,
+    "end": 5.18
+  },
+  {
+    "text": "March 14th, 1958",
+    "label": "DATE",
+    "start": 6.08,
+    "end": 8.4
+  },
+  {
+    "text": "MRN",
+    "label": "ORG",
+    "start": 9.2,
+    "end": 9.66
+  },
+  {
+    "text": "4471982",
+    "label": "DATE",
+    "start": 9.98,
+    "end": 13.5
+  },
+  {
+    "text": "Tuesday the 18th",
+    "label": "DATE",
+    "start": 14.78,
+    "end": 16.34
+  },
+  {
+    "text": "Halvorson",
+    "label": "PERSON",
+    "start": 18.7,
+    "end": 19.28
+  },
+  {
+    "text": "Emerg",
+    "label": "DATE",
+    "start": 19.78,
+    "end": 20.44
+  },
+  {
+    "text": "Windsor Regional",
+    "label": "FAC",
+    "start": 20.7,
+    "end": 21.42
+  },
+  {
+    "text": "Erie Street",
+    "label": "FAC",
+    "start": 30.78,
+    "end": 31.56
+  },
+  {
+    "text": "the morning",
+    "label": "TIME",
+    "start": 39.32,
+    "end": 39.62
+  }
+]
