@@ -8,7 +8,7 @@
   {
     "text": "Fatima Aura Shid",
     "label": "PERSON",
-    "start": 1.2,
+    "start": 0.86,
     "end": 2.54
   },
   {
@@ -52,5 +52,41 @@
     "label": "DATE",
     "start": 29.74,
     "end": 30.66
+  },
+  {
+    "text": "226 -555 -9417",
+    "label": "phone",
+    "start": 17.84,
+    "end": 21.92
+  },
+  {
+    "text": "0622",
+    "label": "long number",
+    "start": 3.56,
+    "end": 5.18
+  },
+  {
+    "text": "1991",
+    "label": "long number",
+    "start": 5.18,
+    "end": 7.46
+  },
+  {
+    "text": "9417",
+    "label": "long number",
+    "start": 20.3,
+    "end": 21.92
+  },
+  {
+    "text": "44291",
+    "label": "long number",
+    "start": 24.66,
+    "end": 26.98
+  },
+  {
+    "text": "H -44291",
+    "label": "id with prefix",
+    "start": 24.28,
+    "end": 26.98
   }
 ]

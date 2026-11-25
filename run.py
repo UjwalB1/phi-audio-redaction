@@ -1,6 +1,7 @@
 import sys, os, json
 import whisper, spacy
 from pydub import AudioSegment
+import patterns
 
 audio_path = sys.argv[1]
 base = os.path.splitext(audio_path)[0]
@@ -27,16 +28,32 @@ doc = nlp(text)
 # Ignoring CARDINAL so bed numbers and doses don't get bleeped
 ACT_ON = {"PERSON", "DATE", "TIME", "GPE", "LOC", "FAC", "ORG", "NORP"}
 
+def words_covering(start_char, end_char):
+    return [i for (a, b, i) in spans if a < end_char and b > start_char]
+
 hits = []
+
 for ent in doc.ents:
     if ent.label_ not in ACT_ON:
         continue
-    covered = [i for (a, b, i) in spans
-               if a < ent.end_char and b > ent.start_char]
+    covered = words_covering(ent.start_char, ent.end_char)
+    if not covered:
+        continue
+    # grab a bare number sitting just before so street numbers come along
+    first = covered[0]
+    if first > 0 and words[first - 1]["text"].strip(".,").isdigit():
+        covered.insert(0, first - 1)
+    hits.append({"text": ent.text, "label": ent.label_,
+                 "start": words[covered[0]]["start"],
+                 "end": words[covered[-1]]["end"]})
+
+for label, s, e in patterns.find(text):
+    covered = words_covering(s, e)
     if covered:
-        hits.append({"text": ent.text, "label": ent.label_,
+        hits.append({"text": text[s:e], "label": label,
                      "start": words[covered[0]]["start"],
                      "end": words[covered[-1]]["end"]})
+
 with open(f"{base}_hits.json", "w", encoding="utf-8") as f:
     json.dump(hits, f, indent=2)
 
@@ -51,5 +68,5 @@ audio.export(f"{base}_redacted.wav", format="wav")
 
 print(text, "\n")
 for h in hits:
-    print(f"{h['start']:6.2f} - {h['end']:6.2f}  {h['label']:8} {h['text']}")
+    print(f"{h['start']:6.2f} - {h['end']:6.2f}  {h['label']:12} {h['text']}")
 print(f"\n{len(hits)} ranges muted -> {base}_redacted.wav")

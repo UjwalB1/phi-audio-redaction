@@ -8,7 +8,7 @@
   {
     "text": "John Smith",
     "label": "PERSON",
-    "start": 3.36,
+    "start": 2.42,
     "end": 3.84
   },
   {
@@ -32,7 +32,7 @@
   {
     "text": "Riverside Drive",
     "label": "FAC",
-    "start": 13.1,
+    "start": 12.56,
     "end": 14.0
   },
   {
@@ -52,5 +52,23 @@
     "label": "DATE",
     "start": 30.24,
     "end": 30.66
+  },
+  {
+    "text": "294417883",
+    "label": "long number",
+    "start": 7.84,
+    "end": 10.86
+  },
+  {
+    "text": "M9A63",
+    "label": "postal code",
+    "start": 14.66,
+    "end": 16.48
+  },
+  {
+    "text": "c .newin at gmail .com",
+    "label": "email",
+    "start": 21.96,
+    "end": 24.4
   }
 ]
