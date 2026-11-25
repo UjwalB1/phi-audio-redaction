@@ -276,3 +276,82 @@ ignored it.
 
 Same identifier but two separate reasons it ended up in a
 file I'd have called de-identified.
+
+---
+
+## Run 6 — 2026-11-25 — Adding regex
+Run 5 said the gap was structured identifiers, so I wrote patterns
+for them. New file patterns.py with five: phone numbers, any run of
+four or more digits, a letter stuck to a number like "H -44291",
+Canadian postal codes, and emails in the spoken form Whisper gives
+you ("c .newin at gmail .com").
+
+Also added a rule in run.py: if a bare number sits right before
+something spaCy flagged, pull it in. Meant to fix "31 Riverside
+Drive" losing its street number.
+
+### 17 of 28 became 23 of 28
+
+| Type | Before | After |
+|------|--------|-------|
+| Names | 7 of 8 | 7 of 8 |
+| Dates | 4 of 6 | 5 of 6 |
+| Places and organisations | 3 of 6 | 4 of 6 |
+| Structured strings | 2 of 7 | 6 of 7 |
+| Age | 1 of 1 | 1 of 1 |
+| Total | 17 of 28 | 23 of 28 |
+
+60.7% to 82.1%.
+
+test2 went 6 of 9 to 9 of 9. The postal code, the email and the
+address all came good.
+
+The one structured identifier still missing is test1's phone number,
+which was never transcribed. No pattern can match text that isn't
+there.
+
+### Run 5 said the fix was regex, and it was
+Nice to have guessed right for once. Every structured identifier that
+made it into a transcript now gets caught. Nothing else moved much,
+which is what you'd want, since the patterns were only ever aimed at
+one thing.
+
+### The number rule works but it's sloppy
+It fixed the address, but it fires on numbers that have nothing to do
+with what follows them.
+
+In test2 "John Smith" now starts at 2.42 instead of 3.36, because
+"Bed 4" sits in front of it and the "4" got dragged along. Same in
+test3 where "Fatima Aura Shid" picked up the "11" from "Rum 11", and
+in test1 where the MRN span swallowed "1958".
+
+All harmless since it only means bleeping a bed number nobody cares
+about. But the address got fixed by a rule that's firing on things it
+wasn't written for, and that's worth admitting rather than calling it
+a clean win.
+
+### What's left
+Five misses.
+
+Two are test1's dropout, the family member name and the phone number.
+Nothing I do downstream touches those.
+
+Three are places and one vague date, all in test3. "hotel DU" where
+only "DU" got flagged. "Met Campus" not flagged at all, and that 17%
+on it is just padding bleeding over from "next Tuesday" sitting next
+to it. And "the third" as a date, which spaCy ignored.
+
+Different shape of problem than what I started with. These need
+better place recognition or a second model, not patterns.
+
+### A guess from Run 1 that turned out wrong
+Back in Run 1 I figured the long string of digits was what made
+Whisper drop that 8 second chunk.
+
+Doesn't hold. test2 has a nine digit health card number transcribed
+perfectly and test3 has the whole phone number transcribed perfectly.
+
+So the dropout happened once in three recordings and I still don't
+know why. Which is a weaker claim than I'd have liked, but "this can
+happen and nothing warns you" is still bad news for a tool whose
+whole job is not leaving things behind.
