@@ -1,0 +1,30 @@
+Script read aloud for test2.m4a
+
+Next one is bed four. John Smith, seventy-two years old, came in
+last Thursday. Health card number is two nine four four one seven
+eight eight three. He's at thirty-one Riverside Drive, postal code
+N nine A six T three. Family doctor is Patel over at Tecumseh Family
+Health. Wife's email is c dot nguyen at gmail dot com if we need to
+reach her. Potassium's low, started him on supplements. Discharge
+planning tomorrow.
+
+
+Identifiers planted (9)
+
+1. John Smith              patient name
+2. 72 years old            age
+3. last Thursday           admission date
+4. 294417883               health card number
+5. 31 Riverside Drive      address
+6. N9A 6T3                 postal code
+7. Patel                   physician name
+8. Tecumseh Family Health  clinic
+9. c.nguyen@gmail.com      email
+
+
+Not identifiers, should stay audible
+
+bed four                   bed number
+potassium low              lab result
+supplements                treatment
+discharge planning         care plan

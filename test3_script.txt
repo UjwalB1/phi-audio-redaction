@@ -1,0 +1,28 @@
+Script read aloud for test3.m4a
+
+Room eleven, Fatima Al-Rashid, DOB oh six, twenty-two, nineteen
+ninety-one. Transferred from Hotel Dieu on the third. Chart says
+allergy to penicillin. Her partner Devon Okoro is listed next of
+kin, cell is two two six, five five five, nine four one seven. She's
+covered under policy number H four four two nine one. Follow-up with
+Doctor Nguyen at Met campus next Tuesday.
+
+
+Identifiers planted (10)
+
+1. Fatima Al-Rashid        patient name
+2. 06/22/1991              date of birth
+3. Hotel Dieu              transferring hospital
+4. the third               transfer date
+5. Devon Okoro             next of kin name
+6. 226-555-9417            phone number
+7. H44291                  policy number
+8. Dr. Nguyen              physician name
+9. Met campus              follow-up location
+10. next Tuesday           follow-up date
+
+
+Not identifiers, should stay audible
+
+room eleven                room number
+penicillin allergy         clinical information

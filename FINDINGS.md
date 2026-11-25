@@ -181,3 +181,98 @@ gone and swapped the name detector for something better. Pointless.
 Every remaining failure is upstream, so it's a bigger Whisper model
 or a second pass over the audio, and nothing downstream will move the
 number at all.
+
+---
+
+## Run 5 — 2026-11-25 — Two more recordings
+One clip wasn't enough to claim anything, so I recorded two more.
+
+test2 is a deliberately common name (John Smith) plus an email, a
+postal code and a health card number. test3 is a hyphenated name, a
+date read out as digits, a second phone number and a policy number.
+
+Ran all three through the same pipeline.
+
+### test1 came out identical on the re-run
+Same transcript, same ten ranges, same timestamps to the hundredth of
+a second. Whisper didn't drift. Good, because a redaction tool giving
+you different output on the same file twice would be a problem on its
+own.
+
+### Scores
+test1: 7 of 9
+test2: 6 of 9
+test3: 4 of 10
+
+17 of 28 overall, so 60.7%.
+
+### Broken down by what kind of identifier it is
+
+| Type | Caught |
+|------|--------|
+| Names (patient, physician, next of kin) | 7 of 8 |
+| Dates | 4 of 6 |
+| Places and organisations | 3 of 6 |
+| Structured strings (phone, email, postal code, policy no., MRN, health card) | 2 of 6 |
+
+The bottom row is the real story, and even those two were flukes.
+spaCy labelled the MRN and the health card number as DATE. It wasn't
+recognising them as identifiers, it guessed wrong in a way that
+happened to work out.
+
+Makes sense when you think about what NER is for. It's trained to
+spot names, places, organisations and dates. There's no entity type
+for "email address" or "postal code", so it has nowhere to put them
+and they sail straight through.
+
+### Three different kinds of failure, not one
+Of the 11 misses:
+
+Two were transcription failures. test1's family member name and phone
+number, never written down, so nothing downstream had a chance.
+
+Three were partial coverage. The identifier was there and spaCy
+flagged part of it. "Riverside Drive" without the "31" in front.
+"DU" without the "hotel". "Campus" without the "Met". Each one leaves
+enough behind to be useless as redaction.
+
+Six were flat misses. Postal code, email, phone number, policy
+number, the date of birth read as digits, and "the third".
+
+They need completely different fixes, which is why lumping them into
+one percentage hides more than it shows.
+
+### I got Run 4 wrong
+In Run 4 I said detection was fine at 7 of 7 and the only problem was
+upstream in Whisper. Three clips says that's backwards. Only 2 of the
+11 misses are Whisper's fault. The other 9 are detection.
+
+test1 happened to be mostly names and dates, which is the one thing
+NER actually does well. I measured the easy case and drew a general
+conclusion from it.
+
+### So what would actually move the number
+Not a better NER model. Regex for the structured stuff, since a phone
+number or a postal code has a shape you can just match. And widening
+flagged spans out to sensible boundaries so a street number comes
+along with its street name.
+
+Both of those are maybe an hour, and between them they'd cover 9 of
+the 11 misses.
+
+### Something I had wrong about the rules
+I planted "72 years old" as an identifier. Turns out HIPAA Safe Harbor
+only counts ages of 90 and over, because a very high age narrows down
+who someone could be. So 72 probably shouldn't have been on the list
+at all.
+
+Leaving it in since it's scored, but worth knowing I was working off
+an assumption rather than the actual rules.
+
+### The best demo is still test3's phone number
+In test1 the phone number vanished because Whisper never wrote it
+down. In test3 Whisper got "226 -555 -9417" perfectly and spaCy
+ignored it.
+
+Same identifier but two separate reasons it ended up in a
+file I'd have called de-identified.

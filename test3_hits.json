@@ -1,0 +1,56 @@
+[
+  {
+    "text": "Rum",
+    "label": "PERSON",
+    "start": 0.0,
+    "end": 0.86
+  },
+  {
+    "text": "Fatima Aura Shid",
+    "label": "PERSON",
+    "start": 1.2,
+    "end": 2.54
+  },
+  {
+    "text": "DOB",
+    "label": "ORG",
+    "start": 3.12,
+    "end": 3.56
+  },
+  {
+    "text": "DU",
+    "label": "ORG",
+    "start": 9.6,
+    "end": 9.94
+  },
+  {
+    "text": "Chart",
+    "label": "ORG",
+    "start": 11.58,
+    "end": 11.74
+  },
+  {
+    "text": "Aura Shid",
+    "label": "PERSON",
+    "start": 11.94,
+    "end": 12.4
+  },
+  {
+    "text": "Devin Acoro",
+    "label": "PERSON",
+    "start": 14.2,
+    "end": 15.06
+  },
+  {
+    "text": "Nguyen",
+    "label": "PERSON",
+    "start": 28.68,
+    "end": 28.9
+  },
+  {
+    "text": "next Tuesday",
+    "label": "DATE",
+    "start": 29.74,
+    "end": 30.66
+  }
+]

@@ -1,11 +1,7 @@
 import json
 
-PAD = 0.1   # must match PAD_MS in redact.py
-
-with open("hits.json", encoding="utf-8") as f:
-    hits = json.load(f)
-with open("ground_truth.json", encoding="utf-8") as f:
-    truth = json.load(f)
+PAD = 0.1
+CLIPS = ["test1", "test2", "test3"]
 
 def merge(ranges):
     out = []
@@ -16,24 +12,36 @@ def merge(ranges):
             out.append([a, b])
     return out
 
-# what actually got silenced, padding included
-muted = merge([(h["start"] - PAD, h["end"] + PAD) for h in hits])
+total_caught = total_items = 0
 
-def covered(start, end):
-    span = end - start
-    got = 0.0
-    for a, b in muted:
-        lo, hi = max(start, a), min(end, b)
-        if hi > lo:
-            got += hi - lo
-    return min(got / span, 1.0)
+for clip in CLIPS:
+    with open(f"{clip}_hits.json", encoding="utf-8") as f:
+        hits = json.load(f)
+    with open(f"{clip}_ground_truth.json", encoding="utf-8") as f:
+        truth = json.load(f)
 
-caught = 0
-print(f"{'#':<3}{'identifier':<22}{'silenced':>9}   result")
-for t in truth:
-    frac = covered(t["start"], t["end"])
-    ok = frac >= 0.999
-    caught += ok
-    print(f"{t['id']:<3}{t['label']:<22}{frac*100:8.1f}%   {'caught' if ok else 'MISSED'}")
+    muted = merge([(h["start"] - PAD, h["end"] + PAD) for h in hits])
 
-print(f"\nRecall: {caught}/{len(truth)} = {caught/len(truth)*100:.1f}%")
+    def covered(start, end):
+        span, got = end - start, 0.0
+        for a, b in muted:
+            lo, hi = max(start, a), min(end, b)
+            if hi > lo:
+                got += hi - lo
+        return min(got / span, 1.0)
+
+    caught = 0
+    print(f"\n=== {clip} ===")
+    print(f"{'#':<3}{'identifier':<18}{'silenced':>9}   result")
+    for t in truth:
+        frac = covered(t["start"], t["end"])
+        ok = frac >= 0.999
+        caught += ok
+        print(f"{t['id']:<3}{t['label']:<18}{frac*100:8.1f}%   "
+              f"{'caught' if ok else 'MISSED'}")
+    print(f"{clip}: {caught}/{len(truth)}")
+    total_caught += caught
+    total_items += len(truth)
+
+print(f"\nOverall: {total_caught}/{total_items} = "
+      f"{total_caught/total_items*100:.1f}%")

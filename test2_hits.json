@@ -1,0 +1,56 @@
+[
+  {
+    "text": "Bed 4",
+    "label": "GPE",
+    "start": 2.3,
+    "end": 2.74
+  },
+  {
+    "text": "John Smith",
+    "label": "PERSON",
+    "start": 3.36,
+    "end": 3.84
+  },
+  {
+    "text": "72 years old",
+    "label": "DATE",
+    "start": 3.84,
+    "end": 4.92
+  },
+  {
+    "text": "last Thursday",
+    "label": "DATE",
+    "start": 5.52,
+    "end": 6.08
+  },
+  {
+    "text": "294417883",
+    "label": "DATE",
+    "start": 7.84,
+    "end": 10.86
+  },
+  {
+    "text": "Riverside Drive",
+    "label": "FAC",
+    "start": 13.1,
+    "end": 14.0
+  },
+  {
+    "text": "Patel",
+    "label": "PERSON",
+    "start": 18.3,
+    "end": 18.66
+  },
+  {
+    "text": "Tukumsi Family Health",
+    "label": "ORG",
+    "start": 19.26,
+    "end": 20.14
+  },
+  {
+    "text": "tomorrow",
+    "label": "DATE",
+    "start": 30.24,
+    "end": 30.66
+  }
+]

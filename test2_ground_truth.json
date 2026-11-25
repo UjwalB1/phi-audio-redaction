@@ -1,0 +1,11 @@
+[
+  {"id": 1, "label": "patient name",    "start": 3.36,  "end": 3.84},
+  {"id": 2, "label": "age",             "start": 3.84,  "end": 4.28},
+  {"id": 3, "label": "admission date",  "start": 5.52,  "end": 6.08},
+  {"id": 4, "label": "health card no.", "start": 7.84,  "end": 10.86},
+  {"id": 5, "label": "address",         "start": 12.56, "end": 14.00},
+  {"id": 6, "label": "postal code",     "start": 14.66, "end": 16.48},
+  {"id": 7, "label": "physician name",  "start": 18.30, "end": 18.66},
+  {"id": 8, "label": "clinic",          "start": 19.26, "end": 20.14},
+  {"id": 9, "label": "email",           "start": 21.96, "end": 24.40}
+]

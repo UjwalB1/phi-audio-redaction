@@ -1,0 +1,12 @@
+[
+  {"id": 1,  "label": "patient name",    "start": 1.20,  "end": 2.54},
+  {"id": 2,  "label": "date of birth",   "start": 3.56,  "end": 7.46},
+  {"id": 3,  "label": "transfer hosp.",  "start": 9.34,  "end": 9.94},
+  {"id": 4,  "label": "transfer date",   "start": 10.34, "end": 10.74},
+  {"id": 5,  "label": "next of kin",     "start": 14.20, "end": 15.06},
+  {"id": 6,  "label": "phone number",    "start": 17.84, "end": 21.92},
+  {"id": 7,  "label": "policy number",   "start": 24.28, "end": 26.98},
+  {"id": 8,  "label": "physician name",  "start": 28.68, "end": 28.90},
+  {"id": 9,  "label": "follow-up site",  "start": 29.16, "end": 29.74},
+  {"id": 10, "label": "follow-up date",  "start": 29.74, "end": 30.66}
+]
